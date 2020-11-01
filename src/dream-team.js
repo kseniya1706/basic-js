@@ -5,19 +5,23 @@ module.exports = function createDreamTeam(members) {
   let firstLetters = [];
   let res = '';
 
-  members.forEach(item => {
-    if (typeof item == 'string'){
-      let tempItem = item.trim()
-      firstLetters.push(tempItem[0].toUpperCase())
+  if (Array.isArray(members)) {
+    members.forEach(item => {
+      if (typeof item == 'string'){
+        let tempItem = item.trim()
+        firstLetters.push(tempItem[0].toUpperCase())
+      }
+    });
+  
+    if (firstLetters.length == 0) {
+     res = false;
     }
-  });
-
-  if (firstLetters.length == 0) {
-   res = false;
+    else {
+      res = firstLetters.sort().join('');
+    }
+  } else {
+    res = false;
   }
-  else {
-    res = firstLetters.sort().join('');
-  }
-
+  
   return res;
 };
