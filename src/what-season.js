@@ -1,10 +1,12 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function getSeason(date) {
-  if (date.getMonth()) {
+  if (!date.getMonth()) {
     throw 'Error';
-  }
-  const month = date.getMonth();
+  } else if (isNaN(date.valueOf())) {
+    return 'FAIL';
+  } else { 
+    let month = date.getMonth();
   
   if (month >= 8 && month <= 10){
     return "fall";
@@ -20,4 +22,6 @@ module.exports = function getSeason(date) {
       }
     }
   }
+  }
+  
 };
